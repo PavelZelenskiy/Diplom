@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    transition: 1s;
+    background-color: lightgrey;
+    
+}
+
+.dark{
+    transition: 1s;
+    background-color: rgb(30 41 59);
+}

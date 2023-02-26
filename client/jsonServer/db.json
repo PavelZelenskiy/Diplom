@@ -1,0 +1,75 @@
+{
+  "recipes": [
+    {
+      "id": "1",
+      "name": "Яичница",
+      "type": "breakfast"
+    },
+    {
+      "id": "9",
+      "name": "awd",
+      "type": "dinner"
+    },
+    {
+      "id": "10",
+      "name": "Test Name",
+      "type": "dinner"
+    },
+    {
+      "id": "11",
+      "name": "Рагу из баранины по-болгарски",
+      "type": "evening meal"
+    },
+    {
+      "id": "12",
+      "name": "Печень в сметане",
+      "type": "evening meal"
+    },
+    {
+      "id": "13",
+      "name": "Венгерский гуляш",
+      "type": "evening meal"
+    },
+    {
+      "id": "14",
+      "name": "Грибной суп с кабачками",
+      "type": "evening meal"
+    },
+    {
+      "id": "16",
+      "name": "Цветная капуста с сырным соусом",
+      "type": "evening meal"
+    }
+  ],
+  "types": [
+    {
+      "id": "101",
+      "name": "Завтрак",
+      "type": "breakfast"
+    },
+    {
+      "id": "102",
+      "name": "Обед",
+      "type": "dinner"
+    },
+    {
+      "id": "103",
+      "name": "Ужин",
+      "type": "evening meal"
+    }
+  ],
+  "users": [
+    {
+      "email": "test@mail.ru",
+      "password": "$2a$10$w3C8kCwy7DU3BFXBpRfhlevf3Kjac61lQrxlqiGBG4/bBq/2FRlQe",
+      "name": "Test Name",
+      "id": 1
+    },
+    {
+      "email": "test2@mail.ru",
+      "password": "$2a$10$Y3uwUWAOhNJ/zDnX0HB.mejH93CAFEwF.wJXYzxvKXxotx.bOj73q",
+      "name": "Test Name2",
+      "id": 2
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+[
+    {
+      "id": "101",
+      "name": "Завтрак",
+      "type": "breakfast"
+    },
+    {
+      "id": "102",
+      "name": "Обед",
+      "type": "dinner"
+    },
+    {
+      "id": "103",
+      "name": "Ужин",
+      "type": "evening meal"
+    }
+  ]

@@ -1,0 +1,6 @@
+{
+  "users": 660,
+  "types": 664,
+  "recipes": 664,
+  "/recipes/:id": "/recipes?id=:id"
+}
