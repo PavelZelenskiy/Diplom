@@ -39,7 +39,7 @@ const LogIn = () => {
     const isValid = validate();
     if (!isValid) return;
     axios
-      .post("http://localhost:8080/api/login", {
+      .post("http://84.38.180.24/api/login", {
         ...data,
       })
       .then((res) => {

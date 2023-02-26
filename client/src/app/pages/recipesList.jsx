@@ -7,7 +7,7 @@ import GroupList from "../components/groupList";
 import { useSelector } from "react-redux";
 import { getRecipes, getRecipesLoadingStatus } from "../store/recipes";
 
-const URL = "http://localhost:8080/api/";
+const URL = "http://84.38.180.24/api/";
 
 const RecipesList = () => {
   //UseStates

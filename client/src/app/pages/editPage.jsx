@@ -6,7 +6,7 @@ import TextField from "../components/forms/textField";
 import { getRecipeById, loadRecipesList } from "../store/recipes";
 import { validator } from "../utils/validator";
 
-const URL = "http://localhost:8080/api/editpage/";
+const URL = "http://84.38.180.24/api/editpage/";
 
 const EditPage = () => {
   const [data, setData] = useState({ name: "" });
