@@ -10,7 +10,7 @@ import { getUserById } from "../store/users";
 import { Link } from "react-router-dom";
 import { adminToggler } from "../utils/adminToggler";
 
-const URL = "http://localhost:8080/api/";
+const URL = "http://84.38.180.24/api/";
 
 const RecipesList = () => {
   //UseStates

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const URL = "http://localhost:8080/api/";
+const URL = "http://84.38.180.24/api/";
 
 const usersSlice = createSlice({
   name: "users",

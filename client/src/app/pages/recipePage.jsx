@@ -7,7 +7,7 @@ import { getUserById } from "../store/users";
 import { adminToggler } from "../utils/adminToggler";
 import { getEatingTime } from "../utils/getEtingTime";
 
-const URL = "http://localhost:8080/api/recipes/";
+const URL = "http://84.38.180.24/api/recipes/";
 
 const RecipePage = ({ recipeId }) => {
   const [token, setToken] = useState();

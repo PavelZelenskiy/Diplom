@@ -7,7 +7,7 @@ import TextField from "../components/forms/textField";
 import { loadRecipesList } from "../store/recipes";
 import { validator } from "../utils/validator";
 
-const URL = "http://localhost:8080/api/recipes/";
+const URL = "http://84.38.180.24/api/recipes/";
 
 const AddRecipe = () => {
   const [data, setData] = useState({
@@ -58,7 +58,7 @@ const AddRecipe = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/types")
+      .get("http://84.38.180.24/api/types")
       .then((res) => {
         setEatingTypes(res.data);
       })
