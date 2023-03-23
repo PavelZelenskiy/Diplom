@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const TextField = ({
   label,
@@ -10,9 +10,9 @@ const TextField = ({
   placeholder,
 }) => {
   return (
-    <div className="container space-y-2 justify-between">
+    <div className="form-row">
       <input
-        className="container w-100 m-3 text-sm rounded outline-none border-l-2 focus:border-slate-500 p-1"
+        className="placeholder"
         type={type}
         id={name}
         name={name}

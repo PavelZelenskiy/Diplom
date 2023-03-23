@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import SelectField from "../components/forms/selectField";
 import TextField from "../components/forms/textField";
-import { getRecipeById, loadRecipesList } from "../store/recipes";
+import { loadRecipesList } from "../store/recipes";
 import { validator } from "../utils/validator";
 
-const URL = "http://localhost:8080/api/editpage/";
+const URL = "http://localhost:8080/api/recipes/";
 
-const EditPage = () => {
+const AddRecipe = () => {
   const [data, setData] = useState({
     name: "",
     description: "",
@@ -21,9 +21,6 @@ const EditPage = () => {
   const [eatingTypes, setEatingTypes] = useState([]);
   const [token, setToken] = useState();
   const history = useHistory();
-  const params = useParams();
-  const { recipeId } = params;
-  const recipe = useSelector(getRecipeById(recipeId));
   const dispatch = useDispatch();
 
   const isValid = Object.keys(validateErrors).length === 0;
@@ -80,11 +77,7 @@ const EditPage = () => {
     const isValid = validate();
     if (!isValid) return;
     axios
-      .patch(
-        URL + recipeId,
-        { ...data },
-        { headers: { Authorization: `Bearer ${token}` } }
-      )
+      .post(URL, { ...data }, { headers: { Authorization: `Bearer ${token}` } })
       .then(() => {
         dispatch(loadRecipesList());
         history.push("/recipes");
@@ -101,16 +94,16 @@ const EditPage = () => {
     }));
   };
 
-  return recipe ? (
+  return (
     <div>
       <form onSubmit={handleSubmit} className="loginform">
-        <h3>Редактирование рецепта</h3>
+        <h3>Добавление рецепта</h3>
         <TextField
           label="Название"
           type="text"
           name="name"
           value={data.name}
-          placeholder={recipe.name}
+          placeholder="Введите название блюда"
           onChange={handleChange}
           error={validateErrors.name}
         />
@@ -158,9 +151,7 @@ const EditPage = () => {
         </button>
       </form>
     </div>
-  ) : (
-    "loading..."
   );
 };
 
-export default EditPage;
+export default AddRecipe;

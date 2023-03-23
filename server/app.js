@@ -32,18 +32,18 @@ if(process.env.NODE_ENV==='production'){
 
 async function start () {
 try {
-    mongoose.connection.once('open',()=>{
-        initDatabase()
-    })
-    await mongoose.connect(config.get('mongoUri'))
-    console.log(chalk.greenBright('MongoDB connected'))
-    app.listen(PORT, ()=>{console.log(chalk.green(`Сервер запущен на порту ${PORT}`))})
+  mongoose.connection.once("open", () => {
+    initDatabase();
+  });
+  await mongoose.connect(config.get("mongoUri"));
+  console.log(chalk.greenBright("MongoDB connected"));
+  app.listen(PORT, () => {
+    console.log(chalk.green(`Сервер запущен на порту ${PORT}`));
+  });
 } catch (error) {
-    console.log(chalk.red(e.message))
-    process.exit(1)
+  console.log(chalk.red(error.message));
+  process.exit(1);
 }
-
-
 }
 
 start()

@@ -6,18 +6,20 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
   const pages = _.range(1, pageCount + 1);
 
   return (
-    <nav className="m-4">
-      <ul className="container flex space-x-4">
+    <nav>
+      <ul className="container pagination">
         {pages.map((page) => (
-          <li
-            key={"page" + page}
-            className={
-              page === currentPage
-                ? "border-b-2 border-slate-500  transition delay-100"
-                : "border-b-2  hover:border-slate-500  transition delay-100"
-            }
-          >
-            <button onClick={() => onPageChange(page)}>{page}</button>
+          <li key={"page" + page}>
+            <div
+              onClick={() => onPageChange(page)}
+              className={
+                page === currentPage
+                  ? "active_paginate_btn"
+                  : "non_active_paginate_btn"
+              }
+            >
+              {page}
+            </div>
           </li>
         ))}
       </ul>

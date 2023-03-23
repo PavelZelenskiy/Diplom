@@ -2,18 +2,19 @@ const recipeMock = require('../mock/recipes.json')
 const typeMock = require('../mock/types.json')
 const Recipe = require('../models/Recipe')
 const Type = require('../models/Type')
+const User = require("../models/User");
 
-module.exports=async()=>{
-   const recipes = await Recipe.find()
-   if(recipes.length!== recipeMock.length){
-    await createInitialEntity(Recipe,recipeMock )
-   }
+module.exports = async () => {
+  const recipes = await Recipe.find();
+  if (recipes.length < recipeMock.length) {
+    await createInitialEntity(Recipe, recipeMock);
+  }
 
-   const types = await Type.find()
-   if(types.length!== typeMock.length){
-    await createInitialEntity(Type,typeMock )
-   }
-}
+  const types = await Type.find();
+  if (types.length < typeMock.length) {
+    await createInitialEntity(Type, typeMock);
+  }
+};
 
 
 async function createInitialEntity(Model, data){

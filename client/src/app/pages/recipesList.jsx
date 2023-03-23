@@ -6,14 +6,20 @@ import { paginate } from "../utils/paginate";
 import GroupList from "../components/groupList";
 import { useSelector } from "react-redux";
 import { getRecipes, getRecipesLoadingStatus } from "../store/recipes";
+import { getUserById } from "../store/users";
+import { Link } from "react-router-dom";
+import { adminToggler } from "../utils/adminToggler";
 
-const URL = "http://84.38.180.24/api/";
+const URL = "http://localhost:8080/api/";
 
 const RecipesList = () => {
   //UseStates
   const [currentPage, setCurrentPage] = useState(1);
   const [eatingTypes, setEatingTypes] = useState([]);
   const [selectedEatingType, setSelectedEatingType] = useState();
+  const [currentUserId, setCurrentUserId] = useState();
+
+  const currentUser = useSelector(getUserById(currentUserId));
   const recipes = useSelector(getRecipes());
   const recipesLoading = useSelector(getRecipesLoadingStatus());
 
@@ -28,6 +34,12 @@ const RecipesList = () => {
     setSelectedEatingType();
   };
 
+  const logOut = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    setCurrentUserId(null);
+  };
+
   //Entities
   const pageSize = 4;
   const filtredRecipes = selectedEatingType
@@ -35,7 +47,33 @@ const RecipesList = () => {
     : recipes;
   const recipesCrop = paginate(filtredRecipes, currentPage, pageSize);
 
+  const logOutButton = (
+    <div className="user_buttons_container">
+      <div onClick={logOut} className="add_btn">
+        Закончить редактирование
+      </div>
+    </div>
+  );
+
+  const userButtons = (
+    <div className="container user_buttons_container">
+      <div>
+        <Link to={"/addrecipe"} className="add_btn">
+          Добавить рецепт
+        </Link>
+      </div>
+      <div onClick={logOut} className="add_btn">
+        Выйти
+      </div>
+    </div>
+  );
+
   //UseEffects
+
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    setCurrentUserId(userId);
+  }, []);
 
   useEffect(() => {
     axios
@@ -53,20 +91,38 @@ const RecipesList = () => {
   }, [selectedEatingType]);
 
   return recipesLoading !== true ? (
-    <div className="container block">
-      <div className="m-10 p-3 text-center">Список рецептов</div>
-      <div className="container flex justify-start space-x-3 m-4">
+    <div>
+      <div className="textcontainer">
+        <h3>Привет, {currentUser ? `${currentUser.name}` : "незнакомец"}.</h3>{" "}
+        На этой странице ты можешь смотреть{" "}
+        {currentUser
+          ? adminToggler(
+              currentUser,
+              " и редaктировать/удалять ",
+              " и добавлять "
+            )
+          : null}
+        рецепты.
+      </div>
+      <div className="filtercontainer">
         <GroupList
           items={eatingTypes}
           onItemSelect={handleEatingTypesSelect}
           selectedItem={selectedEatingType}
         />
-        <button onClick={handleClearFilter} className="container w-1/3">
+        <div onClick={handleClearFilter} className="clearfilterbtn">
           Очистить фильтр
-        </button>
+        </div>
+
+        <div>
+          {" "}
+          {currentUser
+            ? adminToggler(currentUser, logOutButton, userButtons)
+            : null}
+        </div>
       </div>
-      <table className="container shadow-lg ">
-        <tbody className="border-2">
+      <table className="table">
+        <tbody>
           {recipesCrop.map((r) => {
             return <RecipeCard key={r._id} {...r} />;
           })}

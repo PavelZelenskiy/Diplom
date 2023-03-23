@@ -40,11 +40,12 @@ const SignUp = () => {
     const isValid = validate();
     if (!isValid) return;
     axios
-      .post("http://84.38.180.24/api/signup", {
+      .post("http://localhost:8080/api/signup", {
         ...data,
       })
       .then((res) => {
         localStorage.setItem("token", res.data.accessToken);
+        localStorage.setItem("userId", res.data.userId);
         history.push("/");
       })
       .catch((error) => {
@@ -54,8 +55,8 @@ const SignUp = () => {
 
   return (
     <>
-      <div className="m-10 p-3 text-center">Регистрация</div>
-      <form className="container m-5 shadow-lg">
+      <form className="loginform">
+        <h3>Регистрация</h3>
         <TextField
           label="Имя"
           type="text"
@@ -86,11 +87,7 @@ const SignUp = () => {
         <button
           onClick={handleSubmit}
           disabled={!isValid}
-          className={
-            !isValid
-              ? `text-white justify-center m-4 border-b-2 `
-              : `border-b-2  hover:border-slate-500  transition delay-100 m-4 `
-          }
+          className={!isValid ? "nonactivebtn" : "activebtn"}
         >
           Отправить
         </button>

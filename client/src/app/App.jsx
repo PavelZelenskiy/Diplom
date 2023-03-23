@@ -8,6 +8,8 @@ import { useTheme } from "./hooks/useTheme";
 import EditPage from "./pages/editPage";
 import { loadRecipesList } from "./store/recipes";
 import { useDispatch } from "react-redux";
+import { loadUsersList } from "./store/users";
+import addRecipe from "./pages/addRecipePage";
 
 const App = () => {
   const { theme, setTheme } = useTheme();
@@ -15,6 +17,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(loadRecipesList());
+    dispatch(loadUsersList());
   }, []);
 
   const toggleTheme = () => {
@@ -22,13 +25,10 @@ const App = () => {
   };
 
   return (
-    <div className="transition duration-1000 dark:bg-slate-800 dark:text-gray-400 ">
-      <div className="container flex justify-between">
+    <div>
+      <div className="header">
         <NavBar />
-        <button
-          onClick={toggleTheme}
-          className="border-b-2  hover:border-slate-500  transition delay-100"
-        >
+        <button onClick={toggleTheme} className="activebtn">
           Переключить тему
         </button>
       </div>
@@ -37,6 +37,7 @@ const App = () => {
           <Route path="/recipes/:recipeId?" component={RecipeRoutes} />
           <Route path="/signup" component={SignUp} />
           <Route path="/editpage/:recipeId" component={EditPage} />
+          <Route path="/addrecipe" component={addRecipe} />
           <Route path="/" exact component={Main} />
           <Redirect to="/" />
         </Switch>

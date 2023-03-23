@@ -16,17 +16,4 @@ router.patch('/:id', auth, async (req,res)=>{
     }
 })
 
-router.delete('/:id', auth, async (req,res)=>{
-    try {
-        
-        const {id} = req.params
-
-        await Recipe.findByIdAndDelete ({_id:id})
-        res.status(200).send(null)
-
-    } catch (error) {
-        res.status(500).json(error.message)
-    }
-})
-
 module.exports=router

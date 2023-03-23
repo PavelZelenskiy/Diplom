@@ -1,14 +1,379 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-body{
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+
+
+ body{
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight:bold;
+    margin: 0 30px;
+}
+
+.border{
+    border: red 2px solid;
+}
+
+.light{
+    background: lightgrey;
     transition: 1s;
-    background-color: lightgrey;
-    
+    color: black
 }
 
 .dark{
+    background:dimgray;
     transition: 1s;
-    background-color: rgb(30 41 59);
+    color: lightgray
 }
+
+.header {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display:flex;
+    justify-content:space-between
+}
+
+.navbar {
+    list-style: none;
+    margin: 0;
+    display: flex;
+    justify-content:space-between;
+    width: 22rem;
+    }
+
+.navbar li {
+    margin: 10px 0;
+    position: relative;
+    }
+
+.navbar a {
+    width: 100%;
+    color: black;
+    text-decoration: none;
+    border-left: 6px solid #ABC7EA;
+    display: block;
+    padding-left: 5px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 18px;
+    position: relative;
+    transition: 0.3s linear;
+    }
+
+.navbar a:before {
+    content: "";
+    width: 6px;
+    height: 70%;
+    background: #EE997C;
+    position: absolute;
+    top: 15%;
+    left: -12px;
+    }
+
+.navbar li:before {
+    content: "";
+    width: 6px;
+    height: 40%;
+    background: #EFDD89;
+    position: absolute;
+    top: 30%;
+    left: -12px;
+    }
+    
+.navbar a:hover {border-bottom: 5px #ABC7EA solid;}
+
+/* .themebutton{
+    height: 2em;
+    margin:auto;
+    margin-right: 20px;   
+} */
+
+.activebtn {
+    text-decoration: none;
+    display: inline-block;
+    padding: 15px 30px;
+    margin: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 40px 40px darkgray inset, 0 0 0 0 darkgray;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: white;
+    transition: .15s ease-in-out;
+    font-size: 16px;
+  }
+  .activebtn:hover {
+    box-shadow: 0 0 10px 0 whitesmoke inset, 0 0 10px 4px whitesmoke;
+    color: black;
+  }
+
+  .nonactivebtn{
+    text-decoration: none;
+    display: inline-block;
+    padding: 15px 30px;
+    margin: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 40px 40px darkgray inset, 0 0 0 0 darkgray;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: white;
+    transition: .15s ease-in-out;
+    font-size: 16px;
+  }
+
+  .active_paginate_btn {
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px 5px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 whitesmoke inset, 0 0 10px 4px whitesmoke;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: black;
+    transition: .15s ease-in-out;
+    font-size: 16px;
+  }
+
+  .non_active_paginate_btn{
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px 5px;
+    border-radius: 10px;
+    box-shadow: 0 0 40px 40px darkgray inset, 0 0 0 0 darkgray;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: white;
+    transition: .15s ease-in-out;
+    font-size: 16px;
+  }
+
+  .non_active_paginate_btn:hover {
+    box-shadow: 0 0 10px 0 whitesmoke inset, 0 0 10px 4px whitesmoke;
+    color: black;
+  }
+
+  .container {
+    display: flex;
+  }
+
+  .signupcontainer{
+    width: 50%;
+    text-align: center;
+    padding-top: 90px;
+   
+  }
+
+  .signupcontainer a{
+    color: black;
+    text-decoration: none;
+    border-bottom: 5px solid #4a90e2;
+    padding-bottom: 7px;
+  }
+
+  .signupcontainer a:hover{
+    outline: 0;
+    border-color: #F77A52;
+    transition: all 0.5s ease;
+  }
+
+  .logincontainer{
+    width: 50%;
+  }
+
+  .loginform{
+    max-width: 350px;
+    padding: 80px 30px 30px;
+    margin: 0 auto;
+  }
+
+  .loginform h3 {
+    position: relative;
+    z-index: 5;
+    margin: 0 0 60px;
+    text-align: center;
+    color: black;
+    font-size: 30px;
+    font-weight: normal;
+ }
+
+ .loginform h3:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 100px;
+    top: -30px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: lightgreen;
+ }
+
+ .loginform h3:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    right: 70px;
+    top: -40px;
+    width: 0;
+    height: 0;
+    border-left: 55px solid transparent;
+    border-right: 55px solid transparent;
+    border-bottom: 90px solid lightblue;
+ }
+ 
+ .form-row {
+    position: relative;
+    margin-bottom: 40px;
+ }
+
+ .form-row input {
+    display: block;
+    width: 100%;
+    padding: 0 10px;
+    line-height: 40px;
+    background: none;
+    border-width: 0;
+    border-bottom: 5px solid #4a90e2;
+    transition: all 0.5s ease;
+    font-size: 15px;
+ }
+
+ .form-row input:focus {
+    outline: 0;
+    border-color: #F77A52;
+ }
+
+ ::placeholder{
+    color: black;
+    font-size: 15px;
+ }
+
+ .loginform button {
+   margin-left: 110px 
+ }
+
+ .textcontainer{
+    text-align: center; 
+    margin: 40px;
+    font-size: 22px;
+ }
+
+ .textcontainer div {
+    text-align: justify;
+ }
+
+ .textcontainer span{
+    font-size: 18px;
+    font-style: italic;
+    color: grey;
+ }
+
+.filtercontainer{
+    display: flex;
+    margin: 20px 0px;
+}
+
+.filtercontainer div{
+   margin: 0 10px;
+}
+
+.clearfilterbtn{
+    padding: 4px;
+    color: gray;
+    cursor: pointer;
+}
+
+.clearfilterbtn:hover{
+    color: black;
+    transition: all 0.5s ease;
+}
+
+.filter{
+    color: gray;
+    cursor: pointer;
+    padding: 5px 0px;
+}
+
+.filterselected{
+    border-bottom: 5px black solid;
+    transition: all 0.5s ease;
+    cursor: default;
+}
+
+.filter:hover{
+    color: black;
+    transition: all 0.5s ease;
+}
+
+.table {
+    border-collapse: collapse;
+    text-align: left;
+    width: 100%;
+}
+
+.table th:first-child {
+    border-left: 1px solid #777777;	
+    border-bottom:  1px solid #777777;
+    box-shadow: inset 1px 1px 0 #999999, inset 0 -1px 0 #999999;
+}
+
+.table th:last-child {
+    border-right: 1px solid #777777;
+    border-bottom:  1px solid #777777;
+    box-shadow: inset -1px 1px 0 #999999, inset 0 -1px 0 #999999;
+}
+
+.table td {
+    border: 1px solid #e3eef7;
+    padding: 10px 15px;
+    position: relative;
+    transition: all 0.5s ease;
+}
+
+.table tbody:hover td {
+    color: transparent;
+    text-shadow: 0 0 3px #a09f9d;
+}
+
+
+.table tbody:hover tr:hover td {
+    color: #444444;
+    text-shadow: none;
+}
+
+.pagination {
+    list-style: none;
+}
+
+.add_btn{
+    margin-top: 2px;
+    color: gray;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.add_btn:hover{
+    color: black;
+    transition: all 0.5s ease;
+}
+
+.user_buttons_container{
+    padding-top: 4px;
+}
+
+.select select {
+    background: transparent;
+    width: 300px;
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    height: 34px;
+    margin: 20px 0px
+ }
+
+

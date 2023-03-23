@@ -1,45 +1,100 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { getRecipeById } from "../store/recipes";
+import { getRecipeById, loadRecipesList } from "../store/recipes";
+import { getUserById } from "../store/users";
+import { adminToggler } from "../utils/adminToggler";
+import { getEatingTime } from "../utils/getEtingTime";
+
+const URL = "http://localhost:8080/api/recipes/";
 
 const RecipePage = ({ recipeId }) => {
   const [token, setToken] = useState();
+  const [currentUserId, setCurrentUserId] = useState();
   const history = useHistory();
   const recipe = useSelector(getRecipeById(recipeId));
+
+  const dispatch = useDispatch();
 
   const handleToAllRecipes = () => {
     history.push("/recipes");
   };
 
   useEffect(() => {
+    const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("token");
+    setCurrentUserId(userId);
     setToken(token);
   }, []);
 
-  return recipe ? (
-    <div className="m-10 p-3 text-center">
-      <h1 className="m-10 p-3 text-center text-3xl">{recipe.name}</h1>
-      <div className="m-10 p-3 text-center text-xl">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea odit a aut,
-        atque recusandae officiis praesentium ullam nihil, accusantium dolores
-        ratione, minus tempora aliquid assumenda distinctio suscipit eius vero
-        perspiciatis.
+  const currentUser = useSelector(getUserById(currentUserId));
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    axios
+      .delete(URL + recipeId, { headers: { Authorization: `Bearer ${token}` } })
+      .then(() => {
+        dispatch(loadRecipesList());
+        history.push("/recipes");
+      });
+  };
+
+  const getAdminButtons = (recipe) => {
+    return (
+      <div className="container">
+        <Link
+          to={`/editpage/${recipe._id}`}
+          className="add_btn"
+          style={{ margin: "0px 5px" }}
+        >
+          Редактировать
+        </Link>{" "}
+        <div
+          onClick={handleDelete}
+          className="add_btn"
+          style={{ margin: "0px 5px" }}
+        >
+          Удалить
+        </div>
       </div>
-      <div className="container flex justify-center space-x-4">
-        <p className="border-b-2  hover:border-slate-500  transition delay-100">
-          {token ? (
-            <Link to={`/editpage/${recipe._id}`}>Редактировать</Link>
-          ) : (
-            ""
-          )}
-        </p>
-        <button
+    );
+  };
+
+  return recipe ? (
+    <div className="textcontainer">
+      <h3>{recipe.name}</h3>
+      <div>
+        <div className="textcontainer " style={{ textAlign: "center" }}>
+          {recipe.description}
+        </div>
+        <div className="container">
+          <div style={{ margin: "0px 20px" }}>{getEatingTime(recipe)}</div>
+          <div
+            style={{ textAlign: "center", width: "50%", margin: "0px 30px" }}
+          >
+            {recipe.ingridients}
+          </div>
+          <div
+            style={{ textAlign: "center", width: "50%", margin: "0px 30px" }}
+          >
+            {recipe.cooking}
+          </div>
+        </div>
+      </div>
+      <div className="container" style={{ justifyContent: "center" }}>
+        <div>
+          {currentUser
+            ? adminToggler(currentUser, getAdminButtons(recipe), null)
+            : null}
+        </div>
+        <div
           onClick={handleToAllRecipes}
-          className="border-b-2  hover:border-slate-500  transition delay-100"
+          className="add_btn"
+          style={{ margin: "0px 5px" }}
         >
           Все рецепты
-        </button>
+        </div>
       </div>
     </div>
   ) : (
