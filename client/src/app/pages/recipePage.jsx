@@ -6,8 +6,9 @@ import { getRecipeById, loadRecipesList } from "../store/recipes";
 import { getUserById } from "../store/users";
 import { adminToggler } from "../utils/adminToggler";
 import { getEatingTime } from "../utils/getEtingTime";
+import configFile from "../config.json";
 
-const URL = "http://84.38.180.24/api/recipes/";
+const URL = `${configFile.apiEndpoint}recipes/`;
 
 const RecipePage = ({ recipeId }) => {
   const [token, setToken] = useState();

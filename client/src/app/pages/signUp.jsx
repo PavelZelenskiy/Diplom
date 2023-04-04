@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import TextField from "../components/forms/textField";
 import { validator } from "../utils/validator";
+import configFile from "../config.json";
+
+const URL = `${configFile.apiEndpoint}`;
 
 const SignUp = () => {
   const [data, setData] = useState({ email: "", password: "", name: "" });
@@ -40,7 +43,7 @@ const SignUp = () => {
     const isValid = validate();
     if (!isValid) return;
     axios
-      .post("http://84.38.180.24/api/signup", {
+      .post(URL + "signup", {
         ...data,
       })
       .then((res) => {

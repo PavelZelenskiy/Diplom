@@ -3,6 +3,7 @@ import TextField from "./forms/textField";
 import { validator } from "../utils/validator";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import configFile from "../config.json";
 
 const LogIn = () => {
   const [data, setData] = useState({ email: "", password: "" });
@@ -39,7 +40,7 @@ const LogIn = () => {
     const isValid = validate();
     if (!isValid) return;
     axios
-      .post("http://84.38.180.24/api/login", {
+      .post(`${configFile.apiEndpoint}login`, {
         ...data,
       })
       .then((res) => {

@@ -9,8 +9,9 @@ import { getRecipes, getRecipesLoadingStatus } from "../store/recipes";
 import { getUserById } from "../store/users";
 import { Link } from "react-router-dom";
 import { adminToggler } from "../utils/adminToggler";
+import configFile from "../config.json";
 
-const URL = "http://84.38.180.24/api/";
+const URL = `${configFile.apiEndpoint}`;
 
 const RecipesList = () => {
   //UseStates
